@@ -102,12 +102,16 @@ window.onload = function(){
         };
             };
         if (n >= data.length * 0.79) {
-            // ctx.globalCompositeOperation = 'destination-over';
             ctx.canvas.style.opacity = 0;
-            alert(`${win} , 恭喜啊!!!,要離開此頁嗎?`);
-            location.href='lottery.html';
-            }
-        
+            ctx.globalCompositeOperation = 'destination-over';
+            // 為什麼要等按完問句才會幫我把全部刮完，不能先刮完再問句嗎
+            canvas_t.removeEventListener("mousedown",startPosition);
+            canvas_t.removeEventListener("mousemove",draw);
+            // alert(`${win} , 恭喜啊!!!,要離開此頁嗎?`);
+            if(confirm(`${win} , 恭喜啊!!!,要離開此頁嗎?`)){
+                location.href='lottery.html';
+            }   
+        }
     }
     // ----------------------------------------
     function startPosition(e){
